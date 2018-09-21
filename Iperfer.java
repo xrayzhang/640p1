@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import java.io.*;
 import java.net.*;
 
@@ -12,6 +14,9 @@ public class Iperfer {
     //return code -2 = server port is out of bounds
     //return code -3 = time is less than 0w
     public static int readCommands(String[] arguments) {
+        if (arguments.length < 3) {
+            return -1;
+        }
         for (int i = 0; i < arguments.length; i++) {
             if (clientMode && arguments.length != 7) {
                 return -1;
@@ -28,13 +33,13 @@ public class Iperfer {
             }
             else if (arguments[i].equals("-h")) {
                 if (++i >= arguments.length) {
-                    break;
+                    return -1;
                 }
                 hostName = arguments[i];
             }
             else if (arguments[i].equals("-p")) {
                 if (++i >= arguments.length) {
-                    break;
+                    return -1;
                 }
                 int portNum = Integer.parseInt(arguments[i]);
                 if (portNum < 1024 || portNum > 65535) {
@@ -44,7 +49,7 @@ public class Iperfer {
             }
             else if (clientMode == true && arguments[i].equals("-t")) {
                 if (++i >= arguments.length) {
-                    break;
+                    return -1;
                 }
                 time = Integer.parseInt(arguments[i]);
                 if (time < 0) {
@@ -54,9 +59,22 @@ public class Iperfer {
         }
         return 0;
     }
+    public static void server(int portNum) {
+        try (
+            ServerSocket serverSocket = new ServerSocket(portNum);
+            Socket clientSocket = serverSocket.accept();
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        ) {
+            //unfinished. Check the "writing the server side of a socket tutorial"
+        } catch (IOException e) {
+            System.out.println("Caught I/O exception when trying to create a server socket");
+        }
+    }
 
     public static void main(String[] args) {
         int success = readCommands(args);
+        System.out.println("Success: " + success);
         if (success == -1) {
             System.out.println("Error: missing or additional arguments");
         }
