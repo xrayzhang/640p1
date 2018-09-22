@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Date;
 
 public class Iperfer {
     static boolean clientMode;
@@ -82,11 +83,12 @@ public class Iperfer {
             long elapsedTime = 0L;
 
             while (elapsedTime < time * 1000) {
+
                 if (elapsedTime % 1000 == 0) {
                     out.println("elapsed time: " + (elapsedTime / 1000));
                     System.out.println("echo: " + (elapsedTime/1000));
                 }
-                elapsedTime = (new Date()).getTime() - startTime);
+                elapsedTime = (new Date()).getTime() - startTime;
             }
 //            while ((userInput = stdIn.readLine()) != null) {
 //                out.println(userInput);
@@ -118,7 +120,7 @@ public class Iperfer {
         }
 
         if (clientMode) {
-            client(port, hostName);
+            client(port, hostName, time);
         }
         else if (serverMode) {
             server(port);
