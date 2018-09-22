@@ -96,6 +96,7 @@ public class Iperfer {
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
             }
+            out.println(null);
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
