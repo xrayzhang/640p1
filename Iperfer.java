@@ -68,7 +68,7 @@ public class Iperfer {
             //unfinished. Check the "writing the server side of a socket tutorial"
             String input;
             while ((input = in.readLine()) != null) {
-                out.println(input);
+                out.println(input.length());
             }
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
@@ -81,18 +81,28 @@ public class Iperfer {
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-            String userInput;
-            long startTime = System.currentTimeMillis();
-            long elapsedTime = 0L;
-
-            while (elapsedTime < time * 1000) {
-
-                if (elapsedTime % 1000 == 0) {
-                    out.println("elapsed time: " + (elapsedTime));
-                    System.out.println("echo: " + in.readLine());
-                }
-                elapsedTime = (new Date()).getTime() - startTime;
+            char[] arr = new char[125];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = Character.MIN_VALUE;
             }
+            out.println(arr);
+            String userInput;
+            while ((userInput = in.readLine()) != null) {
+                System.out.println("Echo: " + userInput);
+            }
+
+//            String userInput;
+//            long startTime = System.currentTimeMillis();
+//            long elapsedTime = 0L;
+//
+//            while (elapsedTime < time * 1000) {
+//
+//                if (elapsedTime % 1000 == 0) {
+//                    out.println("elapsed time: " + (elapsedTime));
+//                    System.out.println("echo: " + in.readLine());
+//                }
+//                elapsedTime = (new Date()).getTime() - startTime;
+//            }
 //            while ((userInput = stdIn.readLine()) != null) {
 //                out.println(userInput);
 //                System.out.println("echo: " + in.readLine());
