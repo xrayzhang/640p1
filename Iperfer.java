@@ -70,7 +70,7 @@ public class Iperfer {
             String input;
             while ((input = in.readLine()) != null) {
                 totalLength += input.length();
-//                out.println("current input length: " + input.length());
+                out.println("current input length: " + input.length());
             }
             out.println(totalLength);
 //            String input; THIS WORKS
