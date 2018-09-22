@@ -70,7 +70,7 @@ public class Iperfer {
             String input;
             while ((input = in.readLine()) != null) {
                 totalLength += input.length();
-                out.println("current input length: " + input.length());
+                out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
             out.println(totalLength);
 //            String input; THIS WORKS
@@ -95,7 +95,10 @@ public class Iperfer {
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
             }
-            System.out.println(in.readLine());
+            String serverOutput;
+            while ((serverOutput = in.readLine()) != null) {
+                System.out.println(serverOutput);
+            }
 //            String userInput;
 //            while ((userInput = in.readLine()) != null) {
 //                System.out.println("Echo: " + userInput);
