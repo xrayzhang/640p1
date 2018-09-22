@@ -67,8 +67,29 @@ public class Iperfer {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ) {
             //unfinished. Check the "writing the server side of a socket tutorial"
+            out.println("Some data to server");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
+        }
+    }
+    public static void client(int portNum, String portName) {
+        try (
+                Socket echoSocket = new Socket(hostName, port);
+                PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+        ) {
+            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+            String userInput;
+            while ((userInput = stdIn.readLine()) != null) {
+                out.println(userInput);
+                System.out.println("echo: " + in.readLine());
+            }
+        } catch (UnknownHostException e) {
+            System.err.println("Don't know about host " + hostName);
+            System.exit(1);
+        } catch (IOException e) {
+            System.err.println("Couldn't get i/o for the connection to " + hostName);
+            System.exit(1);
         }
     }
 
@@ -88,24 +109,11 @@ public class Iperfer {
             System.exit(0);
         }
 
-        try (
-            Socket echoSocket = new Socket(hostName, port);
-            PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-        ) {
-            String userInput;
-            while ((userInput = stdIn.readLine()) != null) {
-                out.println(userInput);
-                System.out.println("echo: " + in.readLine());
-            }
-        } catch (UnknownHostException e) {
-            System.err.println("Don't know about host " + hostName);
-            System.exit(1);
-        } catch (IOException e) {
-            System.err.println("Couldn't get i/o for the connection to " + hostName);
-            System.exit(1);
-
+        if (clientMode) {
+            client(port, hostName);
+        }
+        else if (serverMode) {
+            server(port);
         }
     }
 }
