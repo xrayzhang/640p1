@@ -95,10 +95,11 @@ public class Iperfer {
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
             }
-            String userInput;
-            while ((userInput = in.readLine()) != null) {
-                System.out.println("Echo: " + userInput);
-            }
+            System.out.println(in.readLine());
+//            String userInput;
+//            while ((userInput = in.readLine()) != null) {
+//                System.out.println("Echo: " + userInput);
+//            }
 
 //            String userInput;
 //            long startTime = System.currentTimeMillis();
