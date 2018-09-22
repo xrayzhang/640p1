@@ -66,7 +66,7 @@ public class Iperfer {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ) {
             //unfinished. Check the "writing the server side of a socket tutorial"
-            out.println("Some data to server");
+            out.println(in.readLine());
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -85,8 +85,8 @@ public class Iperfer {
             while (elapsedTime < time * 1000) {
 
                 if (elapsedTime % 1000 == 0) {
-                    out.println("elapsed time: " + (elapsedTime / 1000));
-                    System.out.println("echo: " + (elapsedTime/1000));
+                    out.println("elapsed time: " + (elapsedTime));
+                    System.out.println("echo: " + in.readLine());
                 }
                 elapsedTime = (new Date()).getTime() - startTime;
             }
