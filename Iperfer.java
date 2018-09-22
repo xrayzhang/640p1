@@ -72,6 +72,7 @@ public class Iperfer {
                 totalLength += input.length();
                 out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
+            System.out.println("finished reading input from client");
             out.println(totalLength);
 //            String input; THIS WORKS
 //            while ((input = in.readLine()) != null) {
@@ -99,6 +100,7 @@ public class Iperfer {
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
             }
+            System.out.println("finished reading input from server");
 //            String userInput;
 //            while ((userInput = in.readLine()) != null) {
 //                System.out.println("Echo: " + userInput);
