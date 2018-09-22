@@ -90,31 +90,10 @@ public class Iperfer {
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
             }
-            String serverOutput;
-            while ((serverOutput = in.readLine()) != null) {
-                System.out.println("Server received " + serverOutput + "number of bits");
-            }
-//            out.println(arr);
-//            String userInput;
-//            while ((userInput = in.readLine()) != null) {
-//                System.out.println("Echo: " + userInput);
-//            }
-
-//            String userInput;
-//            long startTime = System.currentTimeMillis();
-//            long elapsedTime = 0L;
-//
-//            while (elapsedTime < time * 1000) {
-//
-//                if (elapsedTime % 1000 == 0) {
-//                    out.println("elapsed time: " + (elapsedTime));
-//                    System.out.println("echo: " + in.readLine());
-//                }
-//                elapsedTime = (new Date()).getTime() - startTime;
-//            }
-//            while ((userInput = stdIn.readLine()) != null) {
-//                out.println(userInput);
-//                System.out.println("echo: " + in.readLine());
+            String serverOutput = in.readLine();
+            System.out.println(serverOutput);
+//            while ((serverOutput = in.readLine()) != null) {
+//                System.out.println("Server received " + serverOutput + "number of bits");
 //            }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
