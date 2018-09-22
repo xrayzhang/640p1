@@ -8,7 +8,6 @@ public class Iperfer {
     static String hostName;
     static int port;
     static int time;
-    static boolean clientFinished;
     //return code  0 = success
     //return code -1 = missing / additional args
     //return code -2 = server port is out of bounds
@@ -69,7 +68,7 @@ public class Iperfer {
             //unfinished. Check the "writing the server side of a socket tutorial"
             int totalLength = 0;
             String input;
-            while ((input = in.readLine()) != null && !clientFinished) {
+            while ((input = in.readLine()) != null) {
                 totalLength += input.length();
 //                out.println("current input length: " + input.length());
             }
@@ -96,7 +95,6 @@ public class Iperfer {
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
             }
-            clientFinished = true;
             System.out.println(in.readLine());
 //            String userInput;
 //            while ((userInput = in.readLine()) != null) {
