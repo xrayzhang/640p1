@@ -66,7 +66,10 @@ public class Iperfer {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ) {
             //unfinished. Check the "writing the server side of a socket tutorial"
-            out.println(in.readLine());
+            String input;
+            while ((input = in.readLine()) != null) {
+                out.println(input);
+            }
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
