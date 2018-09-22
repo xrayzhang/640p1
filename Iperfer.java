@@ -60,19 +60,16 @@ public class Iperfer {
     }
     public static void server(int portNum) {
         try (
-            ServerSocket serverSocket = new ServerSocket(portNum);
-            Socket clientSocket = serverSocket.accept();
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                ServerSocket serverSocket = new ServerSocket(portNum);
+                Socket clientSocket = serverSocket.accept();
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ) {
             //unfinished. Check the "writing the server side of a socket tutorial"
             String input;
-            int totalLength = 0;
             while ((input = in.readLine()) != null) {
-                totalLength += input.length();
+                out.println(input.length());
             }
-            out.println(totalLength * 8);
-            out.println("sever finished");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -88,14 +85,27 @@ public class Iperfer {
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = Character.MIN_VALUE;
             }
-            for (int i = 0; i < 10; i++) {
-                out.println(arr);
-                System.out.println("sending array number " + i);
+            out.println(arr);
+            String userInput;
+            while ((userInput = in.readLine()) != null) {
+                System.out.println("Echo: " + userInput);
             }
-            String serverOutput = in.readLine();
-            System.out.println("server output" + serverOutput);
-//            while ((serverOutput = in.readLine()) != null) {
-//                System.out.println("Server received " + serverOutput + "number of bits");
+
+//            String userInput;
+//            long startTime = System.currentTimeMillis();
+//            long elapsedTime = 0L;
+//
+//            while (elapsedTime < time * 1000) {
+//
+//                if (elapsedTime % 1000 == 0) {
+//                    out.println("elapsed time: " + (elapsedTime));
+//                    System.out.println("echo: " + in.readLine());
+//                }
+//                elapsedTime = (new Date()).getTime() - startTime;
+//            }
+//            while ((userInput = stdIn.readLine()) != null) {
+//                out.println(userInput);
+//                System.out.println("echo: " + in.readLine());
 //            }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
