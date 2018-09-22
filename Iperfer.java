@@ -67,7 +67,7 @@ public class Iperfer {
         ) {
             //unfinished. Check the "writing the server side of a socket tutorial"
             String input;
-            int totalLength;
+            int totalLength = 0;
             while ((input = in.readLine()) != null) {
                 totalLength += input.length();
             }
