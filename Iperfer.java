@@ -67,9 +67,11 @@ public class Iperfer {
         ) {
             //unfinished. Check the "writing the server side of a socket tutorial"
             String input;
+            int totalLength;
             while ((input = in.readLine()) != null) {
-                out.println(input.length());
+                totalLength += input.length();
             }
+            out.println(totalLength * 8);
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -85,11 +87,18 @@ public class Iperfer {
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = Character.MIN_VALUE;
             }
-            out.println(arr);
-            String userInput;
-            while ((userInput = in.readLine()) != null) {
-                System.out.println("Echo: " + userInput);
+            for (int i = 0; i < 10; i++) {
+                out.println(arr);
             }
+            String serverOutput;
+            while ((serverOutput = in.readLine()) != null) {
+                System.out.println("Server received " + serverOutput + "number of bits");
+            }
+//            out.println(arr);
+//            String userInput;
+//            while ((userInput = in.readLine()) != null) {
+//                System.out.println("Echo: " + userInput);
+//            }
 
 //            String userInput;
 //            long startTime = System.currentTimeMillis();
