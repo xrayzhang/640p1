@@ -70,7 +70,7 @@ public class Iperfer {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
     }
-    public static void client(int portNum, String portName) {
+    public static void client(int portNum, String portName, int time) {
         try (
                 Socket echoSocket = new Socket(hostName, port);
                 PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
@@ -78,10 +78,20 @@ public class Iperfer {
         ) {
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
             String userInput;
-            while ((userInput = stdIn.readLine()) != null) {
-                out.println(userInput);
-                System.out.println("echo: " + in.readLine());
+            long startTime = System.currentTimeMillis();
+            long elapsedTime = 0L;
+
+            while (elapsedTime < time * 1000) {
+                if (elapsedTime % 1000 == 0) {
+                    out.println("elapsed time: " + (elapsedTime / 1000));
+                    System.out.println("echo: " + (elapsedTime/1000));
+                }
+                elapsedTime = (new Date()).getTime() - startTime);
             }
+//            while ((userInput = stdIn.readLine()) != null) {
+//                out.println(userInput);
+//                System.out.println("echo: " + in.readLine());
+//            }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
             System.exit(1);
