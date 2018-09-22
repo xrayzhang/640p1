@@ -72,6 +72,7 @@ public class Iperfer {
                 totalLength += input.length();
             }
             out.println(totalLength * 8);
+            out.println("sever finished");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -89,9 +90,10 @@ public class Iperfer {
             }
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
+                System.out.println("sending array number " + i);
             }
             String serverOutput = in.readLine();
-            System.out.println(serverOutput);
+            System.out.println("server output" + serverOutput);
 //            while ((serverOutput = in.readLine()) != null) {
 //                System.out.println("Server received " + serverOutput + "number of bits");
 //            }
