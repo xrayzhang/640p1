@@ -74,10 +74,6 @@ public class Iperfer {
             }
             System.out.println("finished reading input from client");
             out.println(totalLength);
-//            String input; THIS WORKS
-//            while ((input = in.readLine()) != null) {
-//                out.println(input.length());
-//            }
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -96,33 +92,12 @@ public class Iperfer {
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
             }
-            out.println((String)null);
+
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
             }
             System.out.println("finished reading input from server");
-//            String userInput;
-//            while ((userInput = in.readLine()) != null) {
-//                System.out.println("Echo: " + userInput);
-//            }
-
-//            String userInput;
-//            long startTime = System.currentTimeMillis();
-//            long elapsedTime = 0L;
-//
-//            while (elapsedTime < time * 1000) {
-//
-//                if (elapsedTime % 1000 == 0) {
-//                    out.println("elapsed time: " + (elapsedTime));
-//                    System.out.println("echo: " + in.readLine());
-//                }
-//                elapsedTime = (new Date()).getTime() - startTime;
-//            }
-//            while ((userInput = stdIn.readLine()) != null) {
-//                out.println(userInput);
-//                System.out.println("echo: " + in.readLine());
-//            }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
             System.exit(1);
