@@ -85,9 +85,9 @@ public class Iperfer {
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = Character.MIN_VALUE;
             }
-            out.println(arr);
-            out.println(arr);
-            out.println(arr);
+            for (int i = 0; i < 10; i++) {
+                out.println(arr);
+            }
             String userInput;
             while ((userInput = in.readLine()) != null) {
                 System.out.println("Echo: " + userInput);
