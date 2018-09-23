@@ -51,7 +51,7 @@ public class Iperfer {
                     return -1;
                 }
                 time = Integer.parseInt(arguments[i]);
-                if (time < 0) {
+                if (time <= 0) {
                     return -3;
                 }
             }
@@ -68,6 +68,7 @@ public class Iperfer {
             //unfinished. Check the "writing the server side of a socket tutorial"
             int totalLength = 0;
             String input;
+            System.out.println("server argument time: " + time);
             while ((input = in.readLine()) != null) {
             	if (input.equals("end")) {
             		break;
