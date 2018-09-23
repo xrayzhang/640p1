@@ -75,10 +75,10 @@ public class Iperfer {
             	if (input.equals("end")) {
             		break;
             	}
-            	elapsedTime = (new Date()).getTime() - startTime;
                 totalLength += input.length();
                 out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
+        	elapsedTime = System.currentTimeMillis() - startTime;
             System.out.println("finished reading input from client");
             out.println("received=" + totalLength + " KB rate =" + (totalLength * 8 / time) + " over " + elapsedTime + " milliseconds");
         } catch (IOException e) {
@@ -97,19 +97,24 @@ public class Iperfer {
                 arr[i] = Character.MIN_VALUE;
             }
             int totalLength = 0;
-//            for (int i = 0; i < 10; i++) {
-//                out.println(arr);
-//                totalLength += arr.length;
-//            }
+            for (int i = 0; i < 10; i++) {
+                out.println(arr);
+                totalLength += arr.length;
+            }
             long startTime = System.currentTimeMillis();
-            long elapsedTime = 0L;
-            
-            while (elapsedTime < time * 1000) {
+            long elapsedTime = 0;
+            while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
             	out.println(arr);
             	totalLength += arr.length;
-            	elapsedTime = (new Date()).getTime() - startTime;
             	System.out.println("elapsed time: " + elapsedTime);
             }
+            
+//            while (elapsedTime < time * 1000) {
+//            	out.println(arr);
+//            	totalLength += arr.length;
+//            	elapsedTime = (new Date()).getTime() - startTime;
+//            	System.out.println("elapsed time: " + elapsedTime);
+//            }
             out.println("end");
             System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / time) + " over " + elapsedTime + " milliseconds");
             String serverOutput;
