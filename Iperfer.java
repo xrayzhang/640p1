@@ -75,12 +75,10 @@ public class Iperfer {
             		break;
             	}
                 totalLength += input.length();
-//                System.out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
         	elapsedTime = System.currentTimeMillis() - startTime;
-//            System.out.println("finished reading input from client");
         	double mbps = totalLength * 8 / elapsedTime;
-            out.println("received=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f", mbps) + "Mbps");
+            out.println("received=" + Math.round(totalLength) + " KB rate= " + String.format("%.3f", mbps) + "Mbps");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -91,7 +89,7 @@ public class Iperfer {
                 PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+//            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
             char[] arr = new char[1000];
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = Character.MIN_VALUE;
@@ -102,7 +100,6 @@ public class Iperfer {
             while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
             	out.println(arr);
             	totalLength += arr.length;
-//            	System.out.println("elapsed time: " + (elapsedTime - startTime));
             }
             
             out.println("end");
@@ -112,7 +109,7 @@ public class Iperfer {
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
             }
-            System.out.println("finished reading input from server");
+            
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
             System.exit(1);
