@@ -75,11 +75,11 @@ public class Iperfer {
             		break;
             	}
                 totalLength += input.length();
-                System.out.println("current input length: " + input.length() + ", total length: " + totalLength);
+//                System.out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
         	elapsedTime = System.currentTimeMillis() - startTime;
-            System.out.println("finished reading input from client");
-            out.println("received=" + totalLength + " KB rate =" + (totalLength * 8 / elapsedTime) + " over " + elapsedTime + " milliseconds");
+//            System.out.println("finished reading input from client");
+            out.println("received=" + totalLength + " KB rate =" + (totalLength * 8 / elapsedTime) + "Mbps");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -101,11 +101,11 @@ public class Iperfer {
             while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
             	out.println(arr);
             	totalLength += arr.length;
-            	System.out.println("elapsed time: " + (elapsedTime - startTime));
+//            	System.out.println("elapsed time: " + (elapsedTime - startTime));
             }
             
             out.println("end");
-            System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / (elapsedTime - startTime)) + " over " + (elapsedTime - startTime) + " milliseconds");
+            System.out.println("sent=" + totalLength + " KB rate=" + (totalLength * 8 / (elapsedTime - startTime)) + " Mbps");
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
