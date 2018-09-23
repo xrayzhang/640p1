@@ -65,7 +65,6 @@ public class Iperfer {
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ) {
-            //unfinished. Check the "writing the server side of a socket tutorial"
             int totalLength = 0;
             String input;
             long startTime = System.currentTimeMillis();
@@ -76,7 +75,7 @@ public class Iperfer {
             		break;
             	}
                 totalLength += input.length();
-                out.println("current input length: " + input.length() + ", total length: " + totalLength);
+                System.out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
         	elapsedTime = System.currentTimeMillis() - startTime;
             System.out.println("finished reading input from client");
@@ -97,24 +96,14 @@ public class Iperfer {
                 arr[i] = Character.MIN_VALUE;
             }
             int totalLength = 0;
-            for (int i = 0; i < 10; i++) {
-                out.println(arr);
-                totalLength += arr.length;
-            }
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0;
-            while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 10)) {
+            while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
             	out.println(arr);
             	totalLength += arr.length;
             	System.out.println("elapsed time: " + (elapsedTime - startTime));
             }
             
-//            while (elapsedTime < time * 1000) {
-//            	out.println(arr);
-//            	totalLength += arr.length;
-//            	elapsedTime = (new Date()).getTime() - startTime;
-//            	System.out.println("elapsed time: " + elapsedTime);
-//            }
             out.println("end");
             System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / time) + " over " + elapsedTime + " milliseconds");
             String serverOutput;
