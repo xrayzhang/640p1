@@ -58,7 +58,7 @@ public class Iperfer {
         }
         return 0;
     }
-    public static void server(int portNum, int time) {
+    public static void server(int portNum) {
         try (
                 ServerSocket serverSocket = new ServerSocket(portNum);
                 Socket clientSocket = serverSocket.accept();
@@ -69,15 +69,19 @@ public class Iperfer {
             int totalLength = 0;
             String input;
             System.out.println("server argument time: " + time);
+            long startTime = System.currentTimeMillis();
+            long elapsedTime = 0L;
+            
             while ((input = in.readLine()) != null) {
             	if (input.equals("end")) {
             		break;
             	}
+            	elapsedTime = (new Date()).getTime() - startTime;
                 totalLength += input.length();
                 out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
             System.out.println("finished reading input from client");
-            out.println("received=" + totalLength + " KB rate =" + (totalLength * 8 / time));
+            out.println("received=" + totalLength + " KB rate =" + (totalLength * 8 / time) + " over " + elapsedTime + " milliseconds");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -94,12 +98,20 @@ public class Iperfer {
                 arr[i] = Character.MIN_VALUE;
             }
             int totalLength = 0;
-            for (int i = 0; i < 10; i++) {
-                out.println(arr);
-                totalLength += arr.length;
+//            for (int i = 0; i < 10; i++) {
+//                out.println(arr);
+//                totalLength += arr.length;
+//            }
+            long startTime = System.currentTimeMillis();
+            long elapsedTime = 0L;
+            
+            while (elapsedTime < time * 1000) {
+            	out.println(arr);
+            	totalLength += arr.length;
+            	elapsedTime = (new Date()).getTime() - startTime;
             }
             out.println("end");
-            System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / time));
+            System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / time) + " over " elapsedTime + " milliseconds");
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
@@ -134,7 +146,7 @@ public class Iperfer {
             client(port, hostName, time);
         }
         else if (serverMode) {
-            server(port, time);
+            server(port);
         }
     }
 }
