@@ -58,7 +58,7 @@ public class Iperfer {
         }
         return 0;
     }
-    public static void server(int portNum) {
+    public static void server(int portNum, int time) {
         try (
                 ServerSocket serverSocket = new ServerSocket(portNum);
                 Socket clientSocket = serverSocket.accept();
@@ -76,7 +76,7 @@ public class Iperfer {
                 out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
             System.out.println("finished reading input from client");
-            out.println(totalLength);
+            out.println("received=" + totalLength + " KB rate =" + (totalLength * 8 / time));
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
         }
@@ -88,15 +88,17 @@ public class Iperfer {
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-            char[] arr = new char[125];
+            char[] arr = new char[1000];
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = Character.MIN_VALUE;
             }
+            int totalLength = 0;
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
+                totalLength += arr.length;
             }
             out.println("end");
-
+            System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / time));
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
@@ -131,7 +133,7 @@ public class Iperfer {
             client(port, hostName, time);
         }
         else if (serverMode) {
-            server(port);
+            server(port, time);
         }
     }
 }
