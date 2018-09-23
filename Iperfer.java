@@ -123,7 +123,6 @@ public class Iperfer {
 
     public static void main(String[] args) {
         int success = readCommands(args);
-        System.out.println("Success: " + success);
         if (success == -1) {
             System.out.println("Error: missing or additional arguments");
         }
