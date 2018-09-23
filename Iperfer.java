@@ -65,7 +65,7 @@ public class Iperfer {
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ) {
-            int totalLength = 0;
+            double totalLength = 0;
             String input;
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0L;
@@ -95,7 +95,7 @@ public class Iperfer {
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = Character.MIN_VALUE;
             }
-            int totalLength = 0;
+            double totalLength = 0;
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0;
             while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
