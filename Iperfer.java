@@ -79,7 +79,7 @@ public class Iperfer {
             }
         	elapsedTime = System.currentTimeMillis() - startTime;
 //            System.out.println("finished reading input from client");
-        	double mbps = totalLength * 8 / elapsedTime
+        	double mbps = totalLength * 8 / elapsedTime;
             out.println("received=" + Math.round(totalLength) + " KB rate=" + Math.round(mbps, 3) + "Mbps");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
