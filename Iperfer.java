@@ -105,7 +105,7 @@ public class Iperfer {
             }
             
             out.println("end");
-            System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / time) + " over " + elapsedTime + " milliseconds");
+            System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / elapsedTime) + " over " + elapsedTime + " milliseconds");
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
