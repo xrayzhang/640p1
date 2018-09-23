@@ -68,7 +68,6 @@ public class Iperfer {
             //unfinished. Check the "writing the server side of a socket tutorial"
             int totalLength = 0;
             String input;
-            System.out.println("server argument time: " + time);
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0L;
             
@@ -109,6 +108,7 @@ public class Iperfer {
             	out.println(arr);
             	totalLength += arr.length;
             	elapsedTime = (new Date()).getTime() - startTime;
+            	System.out.println("elapsed time: " + elapsedTime);
             }
             out.println("end");
             System.out.println("client sent " + totalLength + " KB at a rate of " + (totalLength * 8 / time) + " over " + elapsedTime + " milliseconds");
