@@ -69,6 +69,9 @@ public class Iperfer {
             int totalLength = 0;
             String input;
             while ((input = in.readLine()) != null) {
+            	if (input.equals("end")) {
+            		break;
+            	}
                 totalLength += input.length();
                 out.println("current input length: " + input.length() + ", total length: " + totalLength);
             }
@@ -92,6 +95,7 @@ public class Iperfer {
             for (int i = 0; i < 10; i++) {
                 out.println(arr);
             }
+            out.println("end");
 
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
