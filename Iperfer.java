@@ -76,9 +76,10 @@ public class Iperfer {
             	}
                 totalLength += input.length();
             }
-            totalLength /= 1000; //total kb
         	elapsedTime = System.currentTimeMillis() - startTime;
-        	double mbps = totalLength * 8 / elapsedTime;
+            System.out.println("server elapsed time ms: " + elapsedTime);
+            totalLength /= 1000; //total kb
+            double mbps = totalLength * 8 / elapsedTime;
             out.println("received=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f", mbps) + " Mbps");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
@@ -90,9 +91,8 @@ public class Iperfer {
                 PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
-//            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-//            char[] arr = new char[1000];
             byte[] arr = new byte[1000];
+            System.out.println("byte array length: " + arr.length);
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = (byte)0x00;
             }
@@ -101,10 +101,10 @@ public class Iperfer {
             long elapsedTime = 0;
             while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
             	out.println(arr);
-            	totalLength += arr.length;
+            	totalLength += arr.length; //total number of bytes
             }
-            
-            totalLength /= 1000; //total number of KB 
+
+            totalLength /= 1000; //total number of KB
             out.println("end");
             Double mbps = totalLength * 8 / (elapsedTime - startTime);
             System.out.println("sent=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f",  mbps) + " Mbps");
