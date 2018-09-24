@@ -91,9 +91,10 @@ public class Iperfer {
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
 //            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-            char[] arr = new char[1000];
+//            char[] arr = new char[1000];
+            byte[] arr = new byte[1000]
             for (int i = 0; i < arr.length; i++) {
-                arr[i] = Character.MIN_VALUE;
+                arr[i] = (byte)0x00;
             }
             double totalLength = 0;
             long startTime = System.currentTimeMillis();
