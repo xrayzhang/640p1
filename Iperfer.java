@@ -92,7 +92,7 @@ public class Iperfer {
         ) {
 //            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 //            char[] arr = new char[1000];
-            byte[] arr = new byte[1000]
+            byte[] arr = new byte[1000];
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = (byte)0x00;
             }
