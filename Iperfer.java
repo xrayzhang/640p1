@@ -69,15 +69,15 @@ public class Iperfer {
             String input;
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0L;
-            
+
             while ((input = in.readLine()) != null) {
-            	if (input.equals("end")) {
-            		break;
-            	}
+                if (input.equals("end")) {
+                    break;
+                }
                 totalLength += 1; //total kb
             }
-        	elapsedTime = System.currentTimeMillis() - startTime;
-        	double mbps = totalLength * 8 / elapsedTime;
+            elapsedTime = System.currentTimeMillis() - startTime;
+            double mbps = totalLength * 8 / elapsedTime;
             out.println("received=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f", mbps) + " Mbps");
         } catch (IOException e) {
             System.out.println("Caught I/O exception when trying to create a server socket");
@@ -90,31 +90,30 @@ public class Iperfer {
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
 //            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-//            byte[] arr = new byte[1000];
-//            for (int i = 0; i < arr.length; i++) {
-//                arr[i] = (byte)0x00;
-//            }
-        	char[] arr = new char[500];
-        	for (int i = 0; i < arr.length; i++) {
-        		arr[i] = Character.MIN_VALUE;
-        	}
+            byte[] arr = new byte[1000];
+
             double totalLength = 0;
             long startTime = System.currentTimeMillis();
-            long elapsedTime = 0;
-            while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
-            	out.println(arr);
-            	totalLength += 1; //total kb
+            long elapsedTime = 0; //in seconds
+            while (elapsedTime < time) {
+                out.write(arr);
+                elapsedTime = System.currentTimeMillis() - startTime;
+                totalLength += 1;
+                out.flush();
             }
+//            while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
+//            	out.println(arr);
+//            	totalLength += 1; //total kb
+//            }
 
             out.println("end");
             Double mbps = totalLength * 8 / (elapsedTime - startTime);
-            System.out.println(totalLength + " * 8 // " + (elapsedTime - startTime));
             System.out.println("sent=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f",  mbps) + " Mbps");
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
                 System.out.println(serverOutput);
             }
-            
+
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
             System.exit(1);
