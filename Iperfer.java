@@ -74,9 +74,8 @@ public class Iperfer {
             	if (input.equals("end")) {
             		break;
             	}
-                totalLength += input.length();
+                totalLength += 1; //total kb
             }
-            totalLength /= 1000; //total kb
         	elapsedTime = System.currentTimeMillis() - startTime;
         	double mbps = totalLength * 8 / elapsedTime;
             out.println("received=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f", mbps) + " Mbps");
@@ -91,19 +90,18 @@ public class Iperfer {
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
 //            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-            char[] arr = new char[1000];
+            byte[] arr = new byte[1000];
             for (int i = 0; i < arr.length; i++) {
-                arr[i] = Character.MIN_VALUE;
+                arr[i] = (byte)0x00;
             }
             double totalLength = 0;
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0;
             while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
             	out.println(arr);
-            	totalLength += arr.length;
+            	totalLength += 1; //total kb
             }
-            
-            totalLength /= 1000; //total number of KB 
+
             out.println("end");
             Double mbps = totalLength * 8 / (elapsedTime - startTime);
             System.out.println("sent=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f",  mbps) + " Mbps");
