@@ -87,9 +87,9 @@ public class Iperfer {
         try (
                 Socket echoSocket = new Socket(hostName, port);
 //                PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
-                OutputStream out = new OutputStream(echoSocket);
+                OutputStream out = echoSocket.getOutputStream();
                 DataOutputStream outData = new DataOutputStream(out);
-                BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+//                BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
 //            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
             byte[] arr = new byte[1000];
@@ -111,10 +111,10 @@ public class Iperfer {
             out.println("end");
             Double mbps = totalLength * 8 / (elapsedTime - startTime);
             System.out.println("sent=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f",  mbps) + " Mbps");
-            String serverOutput;
-            while ((serverOutput = in.readLine()) != null) {
-                System.out.println(serverOutput);
-            }
+//            String serverOutput;
+//            while ((serverOutput = in.readLine()) != null) {
+//                System.out.println(serverOutput);
+//            }
 
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
