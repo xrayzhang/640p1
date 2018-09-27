@@ -93,7 +93,7 @@ public class Iperfer {
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0; //in seconds
 
-            while (elapsedTime < time) {
+            while (elapsedTime < time * 1000) {
                outData.write(arr);
                elapsedTime = System.currentTimeMillis() - startTime;
                totalLength += 1;
