@@ -108,7 +108,7 @@ public class Iperfer {
 //            	totalLength += 1; //total kb
 //            }
 
-            outData.print("end");
+            outData.writeChars("end");
             Double mbps = totalLength * 8 / (elapsedTime - startTime);
             System.out.println("sent=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f",  mbps) + " Mbps");
 //            String serverOutput;
