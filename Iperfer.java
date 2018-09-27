@@ -87,6 +87,7 @@ public class Iperfer {
         try (
                 Socket echoSocket = new Socket(hostName, port);
                 PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
+                DataOutputStream outData = new DataOutputStream(out);
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
 //            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
@@ -96,10 +97,10 @@ public class Iperfer {
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0; //in seconds
             while (elapsedTime < time) {
-                out.write(arr);
-                elapsedTime = System.currentTimeMillis() - startTime;
-                totalLength += 1;
-                out.flush();
+               dataOut.write(arr);
+               elapsedTime = System.currentTimeMillis() - startTime;
+               totalLength += 1;
+               dataOut.flush();
             }
 //            while ((elapsedTime = System.currentTimeMillis()) < startTime + (time * 1000)) {
 //            	out.println(arr);
