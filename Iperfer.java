@@ -71,9 +71,11 @@ public class Iperfer {
             long startTime = System.currentTimeMillis();
             long elapsedTime = 0L;
             byte[] arr = new byte[1000];
-            while (in.read(arr) != -1) {
-                totalLength += 1; //total kb
+            int currentRead = 0;
+            while ((currentRead = in.read(arr)) != -1) {
+                totalLength += currentRead;
             }
+            totalLength /= 1000; //now totalLength is number of KB
             elapsedTime = System.currentTimeMillis() - startTime;
             double mbps = totalLength * 8 / elapsedTime;
             System.out.println("received=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f", mbps) + " Mbps");
@@ -91,7 +93,7 @@ public class Iperfer {
             byte[] arr = new byte[1000];
             double totalLength = 0;
             long startTime = System.currentTimeMillis();
-            long elapsedTime = 0; //in seconds
+            long elapsedTime = 0; //in milliseconds
 
             while (elapsedTime < time * 1000) {
                outData.write(arr);
