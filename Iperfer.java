@@ -94,7 +94,7 @@ public class Iperfer {
 //            for (int i = 0; i < arr.length; i++) {
 //                arr[i] = (byte)0x00;
 //            }
-        	char[] arr = new char[5000];
+        	char[] arr = new char[500];
         	for (int i = 0; i < arr.length; i++) {
         		arr[i] = Character.MIN_VALUE;
         	}
