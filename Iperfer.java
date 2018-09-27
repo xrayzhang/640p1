@@ -104,6 +104,7 @@ public class Iperfer {
 
             out.println("end");
             Double mbps = totalLength * 8 / (elapsedTime - startTime);
+            System.out.println(total length + " * 8 / " + (elapsedTime - startTime));
             System.out.println("sent=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f",  mbps) + " Mbps");
             String serverOutput;
             while ((serverOutput = in.readLine()) != null) {
