@@ -86,7 +86,8 @@ public class Iperfer {
     public static void client(int portNum, String portName, int time) {
         try (
                 Socket echoSocket = new Socket(hostName, port);
-                PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
+//                PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
+                OutputStream out = new OutputStream(echoSocket);
                 DataOutputStream outData = new DataOutputStream(out);
                 BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
