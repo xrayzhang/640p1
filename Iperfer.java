@@ -86,6 +86,7 @@ public class Iperfer {
                 Socket echoSocket = new Socket(hostName, port);
                 OutputStream out = echoSocket.getOutputStream();
                 DataOutputStream outData = new DataOutputStream(out);
+                BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
         ) {
             byte[] arr = new byte[1000];
             double totalLength = 0;
