@@ -105,7 +105,7 @@ public class Iperfer {
             echoSocket.close();
 
 //            outData.writeChars("end");
-            Double mbps = totalLength * 8 / (elapsedTime - startTime);
+            Double mbps = totalLength * 8 / elapsedTime;
             System.out.println("sent=" + Math.round(totalLength) + " KB rate=" + String.format("%.3f",  mbps) + " Mbps");
             String serverOutput;
 //            while ((serverOutput = in.readLine()) != null) {
